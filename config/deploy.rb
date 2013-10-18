@@ -1,22 +1,24 @@
 require 'bundler/capistrano'
 require 'rvm/capistrano'
 require 'capistrano-unicorn'
-
-set :rvm_ruby_string, '1.9.2'
-set :rvm_type, :tyoma  # Don't use system-wide RVM
+set :rails_env, "production"
+set :rvm_ruby_string, '2.0.0-p247'
+set :rvm_type, :local  # Don't use system-wide RVM
 #load 'config/recipes/base'
 #load 'config/recipes/config'
 
-server '127.0.0.1', :web, :app, :db, primary: true
+server 'mail.interplyt.if.ua', :web, :app, :db, primary: true
 
-set :user, 'tyoma'
+set :user, 'deployer'
 set :application, 'blog'
-set :deploy_to, "/home/tyoma/apps/blog"
-set :deploy_via, :remote_cache
-set :repository, 'https://github.com/artyomartyomov/blog_workshop'
-#set :deploy_via, :copy
+set :deploy_to, "/home/deployer/apps/blog"
+#set :deploy_via, :remote_cache
+#set :repository, 'https://github.com/artyomartyomov/blog_workshop'
+set :deploy_via, :copy
+set :copy_remote_dir, deploy_to
 set :use_sudo, false
-
+set :repository, '.'
+#set :scm, :git
 set :scm, :git
 # set :repository, 'git@github.com:artyomartyomov/blog_workshop.git'
 set :branch, 'master'
