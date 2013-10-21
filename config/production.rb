@@ -1,4 +1,5 @@
 # Production specific settings
+
 if env == "production"
   # Help ensure your application will always spawn in the symlinked
   # "current" directory that Capistrano sets up.
